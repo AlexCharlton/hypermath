@@ -268,10 +268,10 @@ void hpmTranslateRotateScale2D(float x, float y, float z, float angle, float sca
 }
 
 void hpmTranslateRotateScale(float x, float y, float z, 
-			     float qx, float qy, float qz, float qw,
+			     float rx, float ry, float rz, float angle,
                              float scale, float *mat){
     hpmTranslateScale(x, y, z, scale, mat);
-    hpmRotate(qx, qy, qz, qw, mat);
+    hpmRotate(rx, ry, rz, angle, mat);
 }
 
 void hpmTranspose(const float *mat, float *result){

@@ -1,6 +1,5 @@
 #ifndef HYPERMATH
 #define HYPERMATH 1
-#define PI 3.141592653589793
 
 float hpmDegreesToRadians(float deg);
 
@@ -20,7 +19,7 @@ void hpmRotateY(float rotation, float *mat);
 
 void hpmRotateZ(float rotation, float *mat);
 
-void hpmRotate(float x, float y, float z, float w, float *mat);
+void hpmRotate(float x, float y, float z, float angle, float *mat);
 
 void hpmScale2D(float scaleX, float scaleY, float *mat);
 
@@ -40,7 +39,7 @@ void hpmTranslateRotateScale2D(float x, float y, float z, float angle, float sca
                                float *mat);
 
 void hpmTranslateRotateScale(float x, float y, float z, 
-			     float qx, float qy, float qz, float qw,
+			     float rx, float ry, float rz, float angle,
                              float scale, float *mat);
 
 void hpmTranspose(const float *mat, float *result);
