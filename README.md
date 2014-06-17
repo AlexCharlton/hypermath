@@ -82,7 +82,7 @@ Create a view-frustum matrix.
     void hpmLookAt(float eyeX, float eyeY, float eyeZ, float x, float y, float z, float upX, float upY, float upZ, float *mat);
 Create a “look-at” style camera matrix. The camera is positioned at `(eyeX, eyeY, eyeZ)`, pointing towards `(x, y, z)`. `(upX, upY, upZ)` defines the camera’s up vector.
 
-void hpmCameraInverse(const float *camera, float *inverse);
+    void hpmCameraInverse(const float *camera, float *inverse);
 Invert `camera` in an efficient fashion. This allows the camera to be constructed in an intuitive fashion by translating and rotating before inverting in order to position the scene properly. This function is far faster than the general `hpmInverse` function, but the matrix `camera` must only be a matrix representing a translation and a rotation (no scaling).
 
 ### Vector operations
