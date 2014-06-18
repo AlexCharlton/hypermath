@@ -1,13 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
-
-typedef struct {
-    float _11, _21, _31, _41,
-          _12, _22, _32, _42,
-	  _13, _23, _33, _43,
-	  _14, _24, _34, _44;
-} Mat4;
+#include <hypermath.h>
 
 // Angle operations
 float hpmDegreesToRadians(float deg){
@@ -38,8 +32,8 @@ float hpmDot(float ax, float ay, float az, float bx, float by, float bz){
 }
 
 // Matrix operations
-static void initMat4(Mat4 *m){
-  memset(m, 0, sizeof(Mat4));
+static void initMat4(HPMmat4 *m){
+  memset(m, 0, sizeof(HPMmat4));
 }
 
 static void copyMat4(float *dest, const float *source){
@@ -47,7 +41,7 @@ static void copyMat4(float *dest, const float *source){
 }
 
 void hpmPrintMat4(const float *mat){
-    Mat4 *m = (Mat4 *) mat;
+    HPMmat4 *m = (HPMmat4 *) mat;
     printf("[%f, %f, %f, %f,\n",   m->_11, m->_12, m->_13, m->_14);
     printf(" %f, %f, %f, %f,\n",   m->_21, m->_22, m->_23, m->_24);
     printf(" %f, %f, %f, %f,\n",   m->_31, m->_32, m->_33, m->_34);
@@ -55,8 +49,8 @@ void hpmPrintMat4(const float *mat){
 }
 
 void hpmIdentityMat4(float *mat){
-    Mat4 *m = (Mat4 *) mat;
-    memset(m, 0, sizeof(Mat4));
+    HPMmat4 *m = (HPMmat4 *) mat;
+    memset(m, 0, sizeof(HPMmat4));
     m->_11 = 1.0;
     m->_22 = 1.0;
     m->_33 = 1.0;
@@ -64,9 +58,9 @@ void hpmIdentityMat4(float *mat){
 }
 
 void hpmMultMat4(const float *matA, const float *matB, float *result){
-    Mat4 *a = (Mat4 *) matA;
-    Mat4 *b = (Mat4 *) matB;
-    Mat4 *r = (Mat4 *) result;
+    HPMmat4 *a = (HPMmat4 *) matA;
+    HPMmat4 *b = (HPMmat4 *) matB;
+    HPMmat4 *r = (HPMmat4 *) result;
     r->_11 = a->_11*b->_11 + a->_12*b->_21 + a->_13*b->_31 + a->_14*b->_41;
     r->_12 = a->_11*b->_12 + a->_12*b->_22 + a->_13*b->_32 + a->_14*b->_42;
     r->_13 = a->_11*b->_13 + a->_12*b->_23 + a->_13*b->_33 + a->_14*b->_43;
@@ -89,7 +83,7 @@ void hpmMultMat4(const float *matA, const float *matB, float *result){
 }
 
 void hpmTranslate(float x, float y, float z, float *mat){
-    Mat4 trans;
+    HPMmat4 trans;
     float r[16];
     hpmIdentityMat4((float *) &trans);
     trans._14 += x;
@@ -101,7 +95,7 @@ void hpmTranslate(float x, float y, float z, float *mat){
 
 void hpmRotateX(float rotation, float *mat){
     if (rotation == 0.0) return;
-    Mat4 rot;
+    HPMmat4 rot;
     float r[16];
     initMat4(&rot);
     float c = cos(rotation);
@@ -118,7 +112,7 @@ void hpmRotateX(float rotation, float *mat){
 
 void hpmRotateY(float rotation, float *mat){
     if (rotation == 0.0) return;
-    Mat4 rot;
+    HPMmat4 rot;
     float r[16];
     initMat4(&rot);
     float c = cos(rotation);
@@ -135,7 +129,7 @@ void hpmRotateY(float rotation, float *mat){
 
 void hpmRotateZ(float rotation, float *mat){
     if (rotation == 0.0) return;
-    Mat4 rot;
+    HPMmat4 rot;
     float r[16];
     initMat4(&rot);
     float c = cos(rotation);
@@ -152,7 +146,7 @@ void hpmRotateZ(float rotation, float *mat){
 
 void hpmRotate(float x, float y, float z, float angle, float *mat){
     if (angle == 0.0) return;
-    Mat4 m;
+    HPMmat4 m;
     float r[16];
     float c = cos(angle);
     float s = sin(angle);
@@ -188,7 +182,7 @@ void hpmRotate(float x, float y, float z, float angle, float *mat){
 }
 
 void hpmScale2D(float scaleX, float scaleY, float *mat){
-    Mat4 scale;
+    HPMmat4 scale;
     float r[16];
     initMat4(&scale);
     scale._11 = scaleX;
@@ -200,7 +194,7 @@ void hpmScale2D(float scaleX, float scaleY, float *mat){
 }
 
 void hpmScale3D(float scaleX, float scaleY, float scaleZ, float *mat){
-    Mat4 scale;
+    HPMmat4 scale;
     float r[16];
     initMat4(&scale);
     scale._11 = scaleX;
@@ -212,7 +206,7 @@ void hpmScale3D(float scaleX, float scaleY, float scaleZ, float *mat){
 }
 
 void hpmScale(float factor, float *mat){
-    Mat4 scale;
+    HPMmat4 scale;
     float r[16];
     initMat4(&scale);
     scale._11 = factor;
@@ -224,22 +218,22 @@ void hpmScale(float factor, float *mat){
 }
 
 void hpmFlipX(float *mat){
-    Mat4 *m = (Mat4 *) mat;
+    HPMmat4 *m = (HPMmat4 *) mat;
     m->_22 = -m->_22;
 }
 
 void hpmFlipY(float *mat){
-    Mat4 *m = (Mat4 *) mat;
+    HPMmat4 *m = (HPMmat4 *) mat;
     m->_11 = -m->_11;
 }
 
 void hpmFlipZ(float *mat){
-    Mat4 *m = (Mat4 *) mat;
+    HPMmat4 *m = (HPMmat4 *) mat;
     m->_33 = -m->_33;
 }
 
 void hpmTranslateScale(float x, float y, float z, float scale, float *mat){
-    Mat4 *m = (Mat4 *) mat;
+    HPMmat4 *m = (HPMmat4 *) mat;
     initMat4(m);
     m->_11 = scale;
     m->_22 = scale;
@@ -252,7 +246,7 @@ void hpmTranslateScale(float x, float y, float z, float scale, float *mat){
 
 void hpmTranslateRotateScale2D(float x, float y, float z, float angle, float scale,
 			        float *mat){
-    Mat4 *m = (Mat4 *) mat;
+    HPMmat4 *m = (HPMmat4 *) mat;
     initMat4(m);
     float c = scale * cos(angle);
     float s = scale * sin(angle);
@@ -275,8 +269,8 @@ void hpmTranslateRotateScale(float x, float y, float z,
 }
 
 void hpmTranspose(const float *mat, float *result){
-    Mat4 *m = (Mat4 *) mat;
-    Mat4 *r = (Mat4 *) result;
+    HPMmat4 *m = (HPMmat4 *) mat;
+    HPMmat4 *r = (HPMmat4 *) result;
     r->_11 = m->_11;
     r->_12 = m->_21;
     r->_13 = m->_31;
@@ -299,8 +293,8 @@ void hpmTranspose(const float *mat, float *result){
 }
 
 void hpmInverse(const float *mat, float *result){
-    Mat4 *m = (Mat4 *) mat;
-    Mat4 inv;
+    HPMmat4 *m = (HPMmat4 *) mat;
+    HPMmat4 inv;
     float det;
     int i;
 
@@ -436,7 +430,7 @@ void hpmInverse(const float *mat, float *result){
 
 // Projection
 void hpmOrtho(int width, int height, float near, float far, float *mat){
-    Mat4 *m = (Mat4 *) mat;
+    HPMmat4 *m = (HPMmat4 *) mat;
     initMat4(m);
     m->_11 = 2.0 / (float) width;
     m->_22 = 2.0 / (float) height;
@@ -447,7 +441,7 @@ void hpmOrtho(int width, int height, float near, float far, float *mat){
 
 void hpmFrustum(float left, float right, float bottom, float top,
 		float near, float far, float *mat){
-    Mat4 *m = (Mat4 *) mat;
+    HPMmat4 *m = (HPMmat4 *) mat;
     initMat4(m);
     m->_11 = 2.0 * near / (right - left);
     m->_13 =  (right + left) / (right - left);
@@ -471,7 +465,7 @@ void hpmPerspective(int width, int height, float near, float far, float angle,
 // Camera
 void hpmLookAt(float eyeX, float eyeY, float eyeZ, float x, float y, float z, float upX, float upY, float upZ, float *mat){
     float fx, fy, fz, ux, uy, uz, rx, ry, rz;
-    Mat4 *m = (Mat4 *) mat;
+    HPMmat4 *m = (HPMmat4 *) mat;
     initMat4(m);
     hpmNormalize(eyeX - x, eyeY - y, eyeZ - z, &fx, &fy, &fz);
     hpmCross(upX, upY, upZ, fx, fx, fz, &rx, &ry, &rz);
@@ -497,8 +491,8 @@ void hpmLookAt(float eyeX, float eyeY, float eyeZ, float x, float y, float z, fl
   http://ksimek.github.io/2012/08/22/extrinsic/
 */
 void hpmCameraInverse(const float *camera, float *inverse){
-    Mat4 *cam = (Mat4 *) camera;
-    Mat4 *inv = (Mat4 *) inverse;
+    HPMmat4 *cam = (HPMmat4 *) camera;
+    HPMmat4 *inv = (HPMmat4 *) inverse;
     // Rotation component
     inv->_11 = cam->_11;
     inv->_12 = cam->_21;

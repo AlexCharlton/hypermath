@@ -1,6 +1,13 @@
 #ifndef HYPERMATH
 #define HYPERMATH 1
 
+typedef struct {
+    float _11, _21, _31, _41,
+          _12, _22, _32, _42,
+	  _13, _23, _33, _43,
+	  _14, _24, _34, _44;
+} HPMmat4;
+
 float hpmDegreesToRadians(float deg);
 
 float hpmRadiansToDegrees(float rad);
