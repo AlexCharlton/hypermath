@@ -468,7 +468,7 @@ void hpmLookAt(float eyeX, float eyeY, float eyeZ, float x, float y, float z, fl
     HPMmat4 *m = (HPMmat4 *) mat;
     initMat4(m);
     hpmNormalize(eyeX - x, eyeY - y, eyeZ - z, &fx, &fy, &fz);
-    hpmCross(upX, upY, upZ, fx, fx, fz, &rx, &ry, &rz);
+    hpmCross(upX, upY, upZ, fx, fy, fz, &rx, &ry, &rz);
     hpmNormalize(rx, ry, rz, &rx, &ry, &rz);
     hpmCross(fx, fy, fz, rx, ry, rz, &ux, &uy, &uz);
 
