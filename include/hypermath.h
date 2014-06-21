@@ -18,6 +18,8 @@ void hpmPrintMat4(const float *m);
 
 void hpmIdentityMat4(float *m);
 
+void hpmTranslation(float x, float y, float z, float *mat);
+
 void hpmTranslate(float x, float y, float z, float *mat);
 
 void hpmXRotation(float rotation, float *mat);
