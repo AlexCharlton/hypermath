@@ -45,7 +45,7 @@ Create the rotation matrix of `rotation` radians around the Z-axis in the given 
 Rotate the given matrix around the Z-axis by `rotation` radians.
 
     void hpmRotation(float x, float y, float z, float angle, float *mat);
-Create the rotation matrix of `angle` radians around the axis `(x, y, z)` in the given matrix.
+Create the rotation matrix of `angle` radians around the vector `(x, y, z)` in the given matrix.
 
     void hpmRotate(float x, float y, float z, float angle, float *mat);
 Rotate the given matrix around the vector given by `x`, `y`, and `z` by `angle` radians.
