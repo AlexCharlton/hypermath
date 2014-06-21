@@ -134,6 +134,12 @@ Convert radians into degrees.
 
 
 ## Version history
+### Version 0.2.0
+* Each transformation function now has two variants: one that initializes a matrix, and one that operates on a matrix
+* Provide quaternion and YPR rotation
+* Remove unhelpful composite operations
+* Fix a bug in `hpmLookAt`
+
 ### Version 0.1.0
 * Initial release
 
