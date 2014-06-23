@@ -125,6 +125,13 @@ Return the result of the dot product between the vectors `(ax, ay, az)` and `(bx
     void hpmNormalize(float x, float y, float z, float *rx, float *ry, float *rz);
 Return the normalized vector `(x, y, z)`. The result is returned in `rx`, `ry`, and `rz`.
 
+    void hpmMat4VecMult(const float *matrix, float *vec);
+Multiply the 3 element vector by `matrix`, modifying it.
+
+    void hpmMat4VecArrayMult(const float *matrix, float *vectorArray, size_t length, size_t stride);
+Multiply each 3 element vector in `vectorArray` by `matrix`. `length` specifies the number of vectors in `vectorArray`. `stride` specifies the number of bytes between the start of two vectors. If `stride` is `0`, the vectors are assumed to be tightly packed.
+
+
 ### Angle operations
     float hpmDegreesToRadians(float deg);
 Convert degrees into radians.
