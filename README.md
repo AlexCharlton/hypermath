@@ -141,6 +141,9 @@ Convert radians into degrees.
 
 
 ## Version history
+### Version 0.3.0
+* Matrix vector multiplication
+
 ### Version 0.2.0
 * Each transformation function now has two variants: one that initializes a matrix, and one that operates on a matrix
 * Provide quaternion and YPR rotation
