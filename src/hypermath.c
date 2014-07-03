@@ -103,9 +103,9 @@ void hpmMultMat4(const float *matA, const float *matB, float *result){
 void hpmTranslation(float x, float y, float z, float *mat){
     hpmIdentityMat4(mat);
     HPMmat4 *m = (HPMmat4 *) mat;
-    m->_14 += x;
-    m->_24 += y;
-    m->_34 += z;
+    m->_41 += x;
+    m->_42 += y;
+    m->_43 += z;
 }
 
 void hpmTranslate(float x, float y, float z, float *mat){
@@ -357,9 +357,9 @@ void hpmTranslateRotateScale2D(float x, float y, float z, float angle, float sca
     m->_21 = s;
     m->_33 = 1.0;
     m->_44 = 1.0;
-    m->_14 = x;
-    m->_24 = y;
-    m->_34 = z;
+    m->_41 = x;
+    m->_42 = y;
+    m->_43 = z;
 }
 
 void hpmTranspose(const float *mat, float *result){
