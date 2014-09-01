@@ -38,9 +38,12 @@ void hpmNormalize(float *point);
 
 float hpmDot(const float *pointA, const float *pointB);
 
+void hpmLerp(const float *pointA, const float *pointB, float t, float *result);
+
 void hpmMat4VecMult(const float *mat, float *point);
 
 void hpmMat4VecArrayMult(const float *mat, float *vec, size_t length, size_t stride);
+
 
 // Quaternion operations
 void hpmCopyQuat(const float *source, float *dest);

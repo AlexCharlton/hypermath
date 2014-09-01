@@ -91,6 +91,15 @@ void hpmMat4VecArrayMult(const float *mat, float *vec, size_t length, size_t str
     }
 }
 
+void hpmLerp(const float *pointA, const float *pointB, float t, float *result){
+    HPMpoint *a = (HPMpoint *) pointA;
+    HPMpoint *b = (HPMpoint *) pointB;
+    HPMpoint *r = (HPMpoint *) result;
+    float t0 = 1 - t;
+    r->x = a->x*t0 + b->x*t;
+    r->y = a->y*t0 + b->y*t;
+    r->z = a->z*t0 + b->z*t;
+}
 
 // Quaternion operations
 void hpmCopyQuat(const float *source, float *dest){
