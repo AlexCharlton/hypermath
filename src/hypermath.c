@@ -100,10 +100,10 @@ void hpmCopyQuat(const float *source, float *dest){
 void hpmQuatNormalize(float *quat){
     HPMquat *q = (HPMquat *) quat;
     float mag = sqrt(q->x*q->x + q->y*q->y + q->z*q->z + q->w*q->w);
-    q->x = -q->x / mag;
-    q->y = -q->y / mag;
-    q->z = -q->z / mag;
-    q->w =  q->w / mag;
+    q->x = q->x / mag;
+    q->y = q->y / mag;
+    q->z = q->z / mag;
+    q->w = q->w / mag;
 }
 
 void hpmQuatInverse(const float *quat, float *inv){
