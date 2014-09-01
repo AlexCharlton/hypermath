@@ -116,8 +116,8 @@ Flip (mirror) the given matrix along the y-axis.
     void hpmFlipZ(float *mat);
 Flip (mirror) the given matrix along the z-axis.
 
-    void hpmTranslateRotateScale2D(float x, float y, float z, float angle, float scale, float *mat);
-Efficiently create a matrix translated by `x`, `y`, and `z`, rotated around the z-axis by `angle` then scaled by `scale`. 
+    void hpmTranslateRotateScale2D(float *vec, float angle, float scale, float *mat);
+Efficiently create a matrix translated by `vec`, rotated around the z-axis by `angle` then scaled by `scale`. 
 
     void hpmTranspose(const float *mat, float *result);
 Transpose the given matrix into `result`
