@@ -18,6 +18,14 @@ void hpmCopyVec(const float *source, float *dest){
     memcpy(dest, source, sizeof(float) * 3);
 }
 
+void hpmMultVec(const float *pointA, float m, float *result){
+    HPMpoint *a = (HPMpoint *) pointA;
+    HPMpoint *r = (HPMpoint *) result;
+    r->x = a->y * m;
+    r->y = a->z * m;
+    r->z = a->x * m;
+}
+
 void hpmAddVec(const float *pointA, const float *pointB, float *result){
     HPMpoint *a = (HPMpoint *) pointA;
     HPMpoint *b = (HPMpoint *) pointB;

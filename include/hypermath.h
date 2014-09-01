@@ -24,6 +24,8 @@ float hpmRadiansToDegrees(float rad);
 // Vector operations
 void hpmCopyVec(const float *source, float *dest);
 
+void hpmMultVec(const float *pointA, float m, float *result);
+
 void hpmAddVec(const float *pointA, const float *pointB, float *result);
 
 void hpmSubVec(const float *pointA, const float *pointB, float *result);
