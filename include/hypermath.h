@@ -47,7 +47,7 @@ void hpmQuatNormalize(float *quat);
 
 void hpmQuatInverse(const float *quat, float *inv);
 
-void hpmMultQuat(const float *quatA, const float *quatB, float *result);
+void hpmQuatCross(const float *quatA, const float *quatB, float *result);
 
 void hpmQuatVecRotate(const float *quat, float *point);
 

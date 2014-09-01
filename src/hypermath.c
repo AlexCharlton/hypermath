@@ -108,7 +108,7 @@ void hpmQuatInverse(const float *quat, float *inv){
     i->w = q->w;
 }
 
-void hpmMultQuat(const float *quatA, const float *quatB, float *result){
+void hpmQuatCross(const float *quatA, const float *quatB, float *result){
     HPMquat *a = (HPMquat *) quatA;
     HPMquat *b = (HPMquat *) quatB;
     HPMquat *r = (HPMquat *) result;
@@ -127,8 +127,8 @@ void hpmQuatVecRotate(const float *quat, float *point){
     p.z = pt->z;
     p.w = 0;
     hpmQuatInverse(quat, i);
-    hpmMultQuat((float *) &p, i, r);
-    hpmMultQuat(quat, r, i);
+    hpmQuatCross((float *) &p, i, r);
+    hpmQuatCross(quat, r, i);
     pt->x = i[0];
     pt->y = i[1];
     pt->z = i[2];
@@ -147,7 +147,7 @@ void hpmAxisAngleQuatRotation(float *axis, float angle, float *quat){
 void hpmRotateQuatAxisAngle(float *axis, float angle, float *quat){
     float rot[4], r[4];
     hpmAxisAngleQuatRotation(axis, angle, rot);
-    hpmMultQuat(rot, quat, r);
+    hpmQuatCross(rot, quat, r);
     hpmCopyQuat(r, quat);
 }
 
@@ -161,7 +161,7 @@ void hpmRotateQuatX(float angle, float *quat){
     if (angle == 0.0) return;
     float rot[4], r[4];
     hpmXQuatRotation(angle, rot);
-    hpmMultQuat(rot, quat, r);
+    hpmQuatCross(rot, quat, r);
     hpmCopyQuat(r, quat);
 }
 
@@ -175,7 +175,7 @@ void hpmRotateQuatY(float angle, float *quat){
     if (angle == 0.0) return;
     float rot[4], r[4];
     hpmYQuatRotation(angle, rot);
-    hpmMultQuat(rot, quat, r);
+    hpmQuatCross(rot, quat, r);
     hpmCopyQuat(r, quat);
 }
 
@@ -189,7 +189,7 @@ void hpmRotateQuatZ(float angle, float *quat){
     if (angle == 0.0) return;
     float rot[4], r[4];
     hpmZQuatRotation(angle, rot);
-    hpmMultQuat(rot, quat, r);
+    hpmQuatCross(rot, quat, r);
     hpmCopyQuat(r, quat);
 }
 
@@ -202,7 +202,7 @@ void hpmYPRQuatRotation(float yaw, float pitch, float roll, float *quat){
 void hpmRotateQuatYPR(float yaw, float pitch, float roll, float *quat){
     float rot[4], r[4];
     hpmYPRQuatRotation(yaw, pitch, roll, rot);
-    hpmMultQuat(rot, quat, r);
+    hpmQuatCross(rot, quat, r);
     hpmCopyQuat(r, quat);
 }
 
