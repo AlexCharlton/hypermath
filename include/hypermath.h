@@ -32,7 +32,7 @@ void hpmCross(const float *pointA, const float *pointB, float *result);
 
 float hpmMagnitude(const float *point);
 
-void hpmNormalize(const float *point, float *result);
+void hpmNormalize(float *point);
 
 float hpmDot(const float *pointA, const float *pointB);
 
@@ -144,7 +144,7 @@ void hpmPerspective(int width, int height, float near, float far, float angle,
 		    float *mat);
 
 // Camera
-void hpmLookAt(float *eye, float *cam, float *up, float *mat);
+void hpmLookAt(float *eye, float *obj, float *up, float *mat);
 
 void hpmCameraInverse(const float *camera, float *inverse);
 

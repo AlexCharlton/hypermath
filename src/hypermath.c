@@ -50,13 +50,12 @@ float hpmMagnitude(const float *point){
     return sqrt(p->x*p->x + p->y*p->y + p->z*p->z);
 }
 
-void hpmNormalize(const float *point, float *result){
+void hpmNormalize(float *point){
     HPMpoint *p = (HPMpoint *) point;
-    HPMpoint *r = (HPMpoint *) result;
     float len = hpmMagnitude(point);
-    r->x = p->x / len;
-    r->y = p->y / len;
-    r->z = p->z / len;
+    p->x = p->x / len;
+    p->y = p->y / len;
+    p->z = p->z / len;
 }
 
 float hpmDot(const float *pointA, const float *pointB){
@@ -374,7 +373,7 @@ void hpmAxisAngleRotation(float *axis, float angle, float *mat){
     float s = sin(angle);
     float C = 1 - c;
     float xx, xy, xz, yy, yz, zz, xs, ys, zs;
-    hpmNormalize(axis, axis);
+    hpmNormalize(axis);
     xx = a->x * a->x;
     xy = a->x * a->y;
     xz = a->x * a->z;
@@ -748,14 +747,14 @@ void hpmPerspective(int width, int height, float near, float far, float angle,
 }
 
 // Camera
-void hpmLookAt(float *eye, float *cam, float *up, float *mat){
+void hpmLookAt(float *eye, float *obj, float *up, float *mat){
     HPMmat4 *m = (HPMmat4 *) mat;
     HPMpoint f, r, u;
     initMat4(m);
-    hpmSubVec(eye, cam, (float *) &f);
-    hpmNormalize((float *) &f, (float *) &f);
+    hpmSubVec(eye, obj, (float *) &f);
+    hpmNormalize((float *) &f);
     hpmCross(up, (float *) &f, (float *) &r);
-    hpmNormalize((float *) &r, (float *) &r);
+    hpmNormalize((float *) &r);
     hpmCross((float *) &f, (float *) &r, (float *) &u);
 
     m->_11 = r.x;
