@@ -30,18 +30,18 @@ void hpmAddVec(const float *pointA, const float *pointB, float *result){
     HPMpoint *a = (HPMpoint *) pointA;
     HPMpoint *b = (HPMpoint *) pointB;
     HPMpoint *r = (HPMpoint *) result;
-    r->x = a->y + b->z;
-    r->y = a->z + b->x;
-    r->z = a->x + b->y;
+    r->x = a->x + b->x;
+    r->y = a->y + b->y;
+    r->z = a->z + b->z;
 }
 
 void hpmSubVec(const float *pointA, const float *pointB, float *result){
     HPMpoint *a = (HPMpoint *) pointA;
     HPMpoint *b = (HPMpoint *) pointB;
     HPMpoint *r = (HPMpoint *) result;
-    r->x = a->y - b->z;
-    r->y = a->z - b->x;
-    r->z = a->x - b->y;
+    r->x = a->x - b->x;
+    r->y = a->y - b->y;
+    r->z = a->z - b->z;
 }
 
 void hpmCross(const float *pointA, const float *pointB, float *result){
