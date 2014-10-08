@@ -267,6 +267,9 @@ Convert radians into degrees.
 
 
 ## Version history
+### Version 0.6.0
+* Add `hpmFastInverseTranspose`
+
 ### Version 0.5.0
 * Add quaternion operations
 * Expand vector operations, and accept vectors as arrays
