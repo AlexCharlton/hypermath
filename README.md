@@ -125,6 +125,10 @@ Transpose the given matrix into `result`
     void hpmInverse(const float *mat, float *result);
 Invert the given matrix into `result`
 
+    void hpmFastInverseTranspose(const float *mat, float *result);
+Inverse then transpose the given matrix into `result` much faster than if `hpmInverse` and `hpmTranspose` were used. This will not produce correct results on matrices that have been scaled. Instead `hpmInverse` and `hpmTranspose` should be used.
+
+
 ### Projection
     void hpmOrtho(int width, int height, float near, float far, float *mat);
 Create an orthographic projection matrix.
