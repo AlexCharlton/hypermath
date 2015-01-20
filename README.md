@@ -314,6 +314,9 @@ Convert radians into degrees.
 
 
 ## Version history
+### Version 0.7.0
+* Add `hpmOrthoViewport`, `hpmFrustumViewport`
+
 ### Version 0.6.0
 * Add `hpmFastInverseTranspose`
 
