@@ -178,7 +178,7 @@ Create a perspective projection matrix defined by a frustum with a near side of 
 
     void hpmFrustumViewport(float left, float right, float bottom, float top, float near, float far, float vLeft, float vRight, float vBottom, float vTop, float *mat);
 
-Create an perspective projection matrix mapping the `left`, `right`, `top`, `bottom`, `near`, `far` frustum to a viewport of `vLeft`, `vRight`, `vTop`, `vBottom`.
+Create a perspective projection matrix mapping the `left`, `right`, `top`, `bottom`, `near`, `far` frustum to a viewport of `vLeft`, `vRight`, `vTop`, `vBottom`.
 
 ### Camera
     void hpmLookAt(float *eye, float *cam, float *up, float *mat);
