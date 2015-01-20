@@ -170,7 +170,7 @@ Create an orthographic projection matrix mapping the `left`, `right`, `top`, `bo
 
     void hpmPerspective(int width, int height, float near, float far, float angle, float *mat);
 
-Create an perspective projection matrix.
+Create an perspective projection matrix with a field of view of `angle` degrees
 
     void hpmFrustum(float left, float right, float bottom, float top, float near, float far, float *mat);
 
