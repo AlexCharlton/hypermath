@@ -326,6 +326,9 @@ Convert radians into degrees.
 
 
 ## Version history
+### Version 0.8.0
+* Add `hpmAddMat4`, `hpmSubMat4`, `hpmMultMat4S`
+
 ### Version 0.7.0
 * Add `hpmOrthoViewport`, `hpmFrustumViewport`
 
