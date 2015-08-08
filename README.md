@@ -46,6 +46,18 @@ Print the given 4x4 matrix.
 
 Multiply matrix `A` and `B` into `results`.
 
+    void hpmMultMat4S(const float *A, const float S, float *result);
+
+Multiply matrix `A` with scalar `S` into `results`.
+
+    void hpmAddMat4(const float *matA, const float *matB, float *result);
+
+Add matrix `A` and `B` into `results`.
+
+    void hpmSubMat4(const float *matA, const float *matB, float *result);
+
+Subtract matrix `B` from `A` into `results`.
+
     void hpmIdentityMat4(float *m);
 
 Turn the given matrix into an identity matrix.
